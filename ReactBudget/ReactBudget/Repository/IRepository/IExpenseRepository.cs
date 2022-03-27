@@ -10,7 +10,7 @@ namespace ReactBudget.Repository.IRepository
     {
         ICollection<Expenses> GetExpenses();
 
-        Expenses GetTrail(int expensesId);
+        Expenses GetExpense(int expensesId);
 
         // Not sure about adding these yet
         //bool ExpenseExists(string name);

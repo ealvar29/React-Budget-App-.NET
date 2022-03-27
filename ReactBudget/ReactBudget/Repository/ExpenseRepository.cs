@@ -1,4 +1,5 @@
-﻿using ReactBudget.Data.Migrations;
+﻿using Microsoft.EntityFrameworkCore;
+using ReactBudget.Data.Migrations;
 using ReactBudget.Models;
 using ReactBudget.Repository.IRepository;
 using System;
@@ -12,34 +13,42 @@ namespace ReactBudget.Repository
     {
         private readonly ApplicationDbContext _db;
 
+        public ExpenseRepository(ApplicationDbContext db)
+        {
+            _db = db;
+        }
+
         public bool CreateExpense(Expenses expense)
         {
-            throw new NotImplementedException();
+            _db.Expenses.Add(expense);
+            return Save();
         }
 
         public bool DeleteExpense(Expenses expense)
         {
-            throw new NotImplementedException();
+            _db.Expenses.Remove(expense);
+            return Save();
         }
 
         public ICollection<Expenses> GetExpenses()
         {
-            throw new NotImplementedException();
+            return _db.Expenses.Include(x => x.Id).ToList();
         }
 
-        public Expenses GetTrail(int expensesId)
+        public Expenses GetExpense(int expensesId)
         {
-            throw new NotImplementedException();
+            return _db.Expenses.FirstOrDefault(x => x.Id == expensesId);
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            return _db.SaveChanges() >= 0 ? true : false;
         }
 
         public bool UpdateExpense(Expenses expense)
         {
-            throw new NotImplementedException();
+            _db.Expenses.Update(expense);
+            return Save();
         }
     }
 }
