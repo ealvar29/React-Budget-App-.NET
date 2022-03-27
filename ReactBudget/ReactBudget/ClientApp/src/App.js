@@ -4,8 +4,8 @@ import { Layout } from './components/Layout';
 import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import TransactionsPage from './components/TransactionsPage';
-import './custom.css';
 import NotFoundPage from './components/NotFoundPage';
+import './custom.css';
 
 export default class App extends Component {
   static displayName = App.name;
