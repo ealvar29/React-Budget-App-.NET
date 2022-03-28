@@ -5,7 +5,7 @@ import { Home } from './components/Home';
 import { FetchData } from './components/FetchData';
 import TransactionsPage from './components/TransactionsPage';
 import NotFoundPage from './components/NotFoundPage';
-import './custom.css';
+import './index.css';
 
 export default class App extends Component {
   static displayName = App.name;
