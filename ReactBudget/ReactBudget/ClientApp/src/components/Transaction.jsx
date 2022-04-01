@@ -1,10 +1,17 @@
 import React from 'react';
 
-function Transaction({ date, description, category, amount }) {
-  const amountTextColor = amount > 0 ? 'text-green-400' : 'text-gray-900';
+function Transaction({
+  id,
+  date,
+  description,
+  category,
+  amount,
+  onRemoveExpense,
+}) {
+  const amountTextColor = amount > 0 ? 'text-green-500' : 'text-gray-900';
 
   return (
-    <tr>
+    <tr className='cursor-pointer' onClick={() => onRemoveExpense(id)}>
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <div className='flex items-center'>
           <div className='ml-3'>
