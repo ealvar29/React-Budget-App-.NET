@@ -8,20 +8,20 @@ namespace ReactBudget.Repository.IRepository
 {
     public interface IExpenseRepository
     {
-        ICollection<Expenses> GetExpenses();
+        ICollection<Expense> GetExpenses();
 
-        Expenses GetExpense(int expensesId);
+        Expense GetExpense(int expensesId);
 
         // Not sure about adding these yet
         //bool ExpenseExists(string name);
 
         //bool ExpenseExists(int id);
 
-        bool CreateExpense(Expenses expense);
+        bool CreateExpense(Expense expense);
 
-        bool UpdateExpense(Expenses expense);
+        bool UpdateExpense(Expense expense);
 
-        bool DeleteExpense(Expenses expense);
+        bool DeleteExpense(Expense expense);
 
         bool Save();
     }

@@ -18,24 +18,24 @@ namespace ReactBudget.Repository
             _db = db;
         }
 
-        public bool CreateExpense(Expenses expense)
+        public bool CreateExpense(Expense expense)
         {
             _db.Expenses.Add(expense);
             return Save();
         }
 
-        public bool DeleteExpense(Expenses expense)
+        public bool DeleteExpense(Expense expense)
         {
             _db.Expenses.Remove(expense);
             return Save();
         }
 
-        public ICollection<Expenses> GetExpenses()
+        public ICollection<Expense> GetExpenses()
         {
-            return _db.Expenses.Include(x => x.Id).ToList();
+            return _db.Expenses.OrderBy(x => x.Id).ToList();
         }
 
-        public Expenses GetExpense(int expensesId)
+        public Expense GetExpense(int expensesId)
         {
             return _db.Expenses.FirstOrDefault(x => x.Id == expensesId);
         }
@@ -45,7 +45,7 @@ namespace ReactBudget.Repository
             return _db.SaveChanges() >= 0 ? true : false;
         }
 
-        public bool UpdateExpense(Expenses expense)
+        public bool UpdateExpense(Expense expense)
         {
             _db.Expenses.Update(expense);
             return Save();

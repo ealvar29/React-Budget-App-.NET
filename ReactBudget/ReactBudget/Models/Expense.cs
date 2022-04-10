@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReactBudget.Models
 {
-    public class Expenses
+    public class Expense
     {
 
         [Key]

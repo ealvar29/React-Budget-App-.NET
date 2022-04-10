@@ -24,7 +24,7 @@ namespace ReactBudget.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateExpense([FromBody] ExpensesDto expensesDto)
+        public IActionResult CreateExpense([FromBody] ExpenseDto expensesDto)
         {
             if (expensesDto == null)
             {
@@ -34,7 +34,7 @@ namespace ReactBudget.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var expenseObject = _mapper.Map<Expenses>(expensesDto);
+            var expenseObject = _mapper.Map<Expense>(expensesDto);
 
             return Ok(expenseObject);
         }
@@ -42,7 +42,7 @@ namespace ReactBudget.Controllers
         [HttpDelete]
         //Might be this one instead
         //[HttpDelete("{expenseId:int}", Name = "DeleteExpense")]
-        public IActionResult DeleteExpense(int expenseId, [FromBody] ExpensesDto expensesDto)
+        public IActionResult DeleteExpense(int expenseId, [FromBody] ExpenseDto expensesDto)
         {
             var expenseObject = _erRepo.GetExpense(expenseId);
             if (!_erRepo.DeleteExpense(expenseObject))
@@ -54,18 +54,19 @@ namespace ReactBudget.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(List<ExpenseDto>))]
         public IActionResult GetExpenses()
         {
             var expenses = _erRepo.GetExpenses();
-            var expensesDto = new List<ExpensesDto>();
+            var expensesDto = new List<ExpenseDto>();
             foreach (var expense in expensesDto)
             {
-                expensesDto.Add(_mapper.Map<ExpensesDto>(expense));
+                expensesDto.Add(_mapper.Map<ExpenseDto>(expense));
             }
             return Ok(expenses);
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public IActionResult GetExpense(int expensesId)
         {
             var expense = _erRepo.GetExpense(expensesId);
@@ -75,16 +76,16 @@ namespace ReactBudget.Controllers
             }
             var expenseDto = _mapper.Map<ExpensesDto>(expense);
             return Ok(expenseDto);
-        }
+        }*/
 
         [HttpPatch]
-        public IActionResult UpdateExpense(int expenseId, [FromBody] ExpensesDto expensesDto)
+        public IActionResult UpdateExpense(int expenseId, [FromBody] ExpenseDto expensesDto)
         {
             if (expensesDto == null || expenseId != expensesDto.Id)
             {
                 return BadRequest(ModelState);
             }
-            var expenseObject = _mapper.Map<Expenses>(expensesDto);
+            var expenseObject = _mapper.Map<Expense>(expensesDto);
             if (!_erRepo.UpdateExpense(expenseObject))
             {
                 ModelState.AddModelError("", $"Something went wrong when updating the record {expenseObject.Name}");

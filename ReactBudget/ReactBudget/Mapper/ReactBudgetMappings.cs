@@ -12,7 +12,7 @@ namespace ReactBudget.Mapper
     {
         public ReactBudgetMappings()
         {
-            CreateMap<Expenses, ExpensesDto>().ReverseMap();
+            CreateMap<Expense, ExpenseDto>().ReverseMap();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ReactBudget.Models.Dtos
 {
-    public class ExpensesDto
+    public class ExpenseDto
     {
         [Key]
         public int Id { get; set; }
